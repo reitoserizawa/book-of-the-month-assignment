@@ -1,73 +1,51 @@
-# React + TypeScript + Vite
+````markdown
+# Checkout Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript checkout page built with Vite for Book of the Month assignment.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React + TypeScript
+- Vite
+- TanStack Query
+- Tailwind CSS
 
-## React Compiler
+## APIs Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [Open Library](https://openlibrary.org/dev/docs/api) — books (no API key required)
+- [TestingBot Random Address](https://testingbot.com) — shipping address (no API key required)
+- `POST /api/checkout` — place order (please update the endpoint)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+npm install
+npm run dev
+```
+````
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── api/                 # API functions
+├── assets/              # Google Icons
+├── components/
+│   ├── common/          # BookRow, AddressCard, ErrorBanner, etc.
+│   ├── ErrorBoundary/   # page crush error handler
+│   └── pages/           # CheckoutPage
+├── hooks/               # useBooks, useAddress, useCheckout
+└── utils/               # formatCurrency etc.
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Assumptions & Trade-offs
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Book prices are randomly generated ($9.99–$24.99) since Open Library is a library catalog with no pricing data
+- 1–4 books are randomly picked from the daily trending list on each load
+- Address is fetched from a free random address API and parsed from a single string into structured fields
+- `retry: false` on the checkout mutation — avoids placing duplicate orders on network hiccups
+- Error boundary at the app root catches any unexpected render crashes
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+
 ```

@@ -1,4 +1,3 @@
-````markdown
 # Checkout Page
 
 A React + TypeScript checkout page built with Vite for Book of the Month assignment.
@@ -17,12 +16,20 @@ A React + TypeScript checkout page built with Vite for Book of the Month assignm
 - `POST /api/checkout` — place order (please update the endpoint)
 
 ## Getting Started
-
 ```bash
+# 1. Clone the repository
+git clone git@github.com:reitoserizawa/book-of-the-month-assignment.git
+cd book-of-the-month-assignment
+
+# 2. Install dependencies
 npm install
+
+# 3. Start the dev server
 npm run dev
 ```
-````
+
+The app will be running at `http://localhost:5173`.
+
 
 ## Project Structure
 
@@ -45,7 +52,3 @@ src/
 - Address is fetched from a free random address API and parsed from a single string into structured fields
 - `retry: false` on the checkout mutation — avoids placing duplicate orders on network hiccups
 - Error boundary at the app root catches any unexpected render crashes
-
-```
-
-```

@@ -16,11 +16,20 @@ A React + TypeScript checkout page built with Vite for Book of the Month assignm
 - `POST /api/checkout` — place order (please update the endpoint)
 
 ## Getting Started
-
 ```bash
+# 1. Clone the repository
+git clone git@github.com:reitoserizawa/book-of-the-month-assignment.git
+cd book-of-the-month-assignment
+
+# 2. Install dependencies
 npm install
+
+# 3. Start the dev server
 npm run dev
 ```
+
+The app will be running at `http://localhost:5173`.
+
 
 ## Project Structure
 

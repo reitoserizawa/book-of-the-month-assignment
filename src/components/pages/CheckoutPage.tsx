@@ -10,6 +10,7 @@ import AddressCard from '../common/AddressCard';
 import ErrorBanner from '../common/ErrorBanner';
 import ConfirmationBanner from '../common/ConfirmationBanner';
 import FullScreenLoader from '../common/FullScreenLoader';
+import LoaderIcon from '../../assets/LoaderIcon';
 
 const CheckoutPage: React.FC = () => {
     const { data: books, isLoading: booksLoading, isError: booksError } = useBooks();
@@ -76,6 +77,7 @@ const CheckoutPage: React.FC = () => {
                     <ConfirmationBanner data={orderData} />
                 ) : (
                     <button
+                        type='button'
                         onClick={handlePlaceOrder}
                         disabled={isPending}
                         aria-busy={isPending}
@@ -88,21 +90,8 @@ const CheckoutPage: React.FC = () => {
                     >
                         {isPending ? (
                             <span className='flex items-center justify-center gap-2'>
-                                <svg className='animate-spin h-4 w-4' fill='none' viewBox='0 0 24 24'>
-                                    <circle
-                                        className='opacity-25'
-                                        cx='12'
-                                        cy='12'
-                                        r='10'
-                                        stroke='currentColor'
-                                        strokeWidth='4'
-                                    />
-                                    <path
-                                        className='opacity-75'
-                                        fill='currentColor'
-                                        d='M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4z'
-                                    />
-                                </svg>
+                                <LoaderIcon className='animate-spin h-6 w-6' />
+                                <span className='sr-only'>Placing your order, please wait</span>
                                 Placing Order...
                             </span>
                         ) : (

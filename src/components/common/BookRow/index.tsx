@@ -5,7 +5,7 @@ import formatCurrency from '../../../utils/formatCurrenct';
 const BookRow: React.FC<BookRowProps> = ({ book }) => {
     return (
         <div className='flex items-center gap-4 py-4 border-b border-stone-100 last:border-0'>
-            {book.coverImage && (
+            {book.coverImage ? (
                 <div className='w-14 h-20 flex-shrink-0 rounded overflow-hidden bg-stone-100 shadow-sm'>
                     <img
                         src={book.coverImage}
@@ -16,6 +16,9 @@ const BookRow: React.FC<BookRowProps> = ({ book }) => {
                         }}
                     />
                 </div>
+            ) : (
+                // placeholder for missing cover image, with aria-hidden since it's decorative
+                <div className='w-14 h-20 flex-shrink-0 rounded bg-stone-100' aria-hidden='true' />
             )}
             <div className='flex-1 min-w-0'>
                 <p className='font-semibold text-stone-800 truncate'>{book.title}</p>
